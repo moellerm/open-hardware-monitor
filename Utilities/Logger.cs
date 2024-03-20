@@ -122,20 +122,9 @@ namespace OpenHardwareMonitor.Utilities {
       identifiers = sensors.Select(s => s.Identifier.ToString()).ToArray();
 
       using (StreamWriter writer = new StreamWriter(fileName, false)) {
-        writer.Write(",");
-        for (int i = 0; i < sensors.Length; i++) {
-          writer.Write(sensors[i].Identifier);
-          if (i < sensors.Length - 1)
-            writer.Write(",");
-          else
-            writer.WriteLine();
-        }
-
         writer.Write("Time,");
         for (int i = 0; i < sensors.Length; i++) {
-          writer.Write('"');
-          writer.Write(sensors[i].Name);
-          writer.Write('"');
+          writer.Write($"\"{sensors[i].Identifier}/{sensors[i].Name}\"");
           if (i < sensors.Length - 1)
             writer.Write(",");
           else
