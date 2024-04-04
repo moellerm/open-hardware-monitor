@@ -19,7 +19,7 @@ namespace OpenHardwareMonitor.Utilities {
   public class Logger {
 
     private const string fileNameFormat = 
-      "OpenHardwareMonitorLog-{0:yyyy-MM-dd}.csv";
+      @"OpenHardwareMonitorLog\OpenHardwareMonitorLog-{0:yyyy-MM-dd}.csv";
 
     private readonly IComputer computer;
 
@@ -75,8 +75,15 @@ namespace OpenHardwareMonitor.Utilities {
     }
 
     private static string GetFileName(DateTime date) {
-      return AppDomain.CurrentDomain.BaseDirectory +
+      var fileName = AppDomain.CurrentDomain.BaseDirectory +
         Path.DirectorySeparatorChar + string.Format(fileNameFormat, date);
+      var dirName = Path.GetDirectoryName(fileName);
+
+      if (!Directory.Exists(dirName)) {
+        Directory.CreateDirectory(dirName);
+      }
+
+      return fileName;
     }
 
     private bool OpenExistingLogFile() {
