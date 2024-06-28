@@ -135,6 +135,8 @@ namespace OpenHardwareMonitor.Hardware.CPU {
       for (int i = 0; i < this.cores.Length; i++) {
         this.cores[i] = new Core(i, cpuid[i], this, settings);
       }
+
+      Update();   
     }
 
     protected override uint[] GetMSRs() {
