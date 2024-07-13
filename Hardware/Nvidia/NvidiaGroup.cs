@@ -32,20 +32,57 @@ namespace OpenHardwareMonitor.Hardware.Nvidia {
         report.AppendLine(version);
       }
 
-      NvPhysicalGpuHandle[] handles = 
+      NvPhysicalGpuHandle[] handles =
         new NvPhysicalGpuHandle[NVAPI.MAX_PHYSICAL_GPUS];
-      int count;
-      if (NVAPI.NvAPI_EnumPhysicalGPUs == null) {
+      NvPhysicalGpuHandle[] tccHandles =
+        new NvPhysicalGpuHandle[NVAPI.MAX_PHYSICAL_GPUS];
+      int count = 0;
+      int tccCount = 0;
+
+      bool enumPhysicalGPUsFault = true;
+      bool enumTCCPhysicalGPUsFault = true;
+
+      if (NVAPI.NvAPI_EnumPhysicalGPUs == null)
+      {
         report.AppendLine(" Error: NvAPI_EnumPhysicalGPUs not available");
         report.AppendLine();
-        return;
-      } else {        
+      }
+      else
+      {
         NvStatus status = NVAPI.NvAPI_EnumPhysicalGPUs(handles, out count);
-        if (status != NvStatus.OK) {
+        if (status != NvStatus.OK)
+        {
           report.AppendLine(" Status: " + status);
           report.AppendLine();
-          return;
         }
+        else
+        {
+          enumPhysicalGPUsFault = false;
+        }
+      }
+
+      if (NVAPI.NvAPI_EnumTCCPhysicalGPUs == null)
+      {
+        report.AppendLine(" Error: NvAPI_EnumTCCPhysicalGPUs not available");
+        report.AppendLine();
+      }
+      else
+      {
+        NvStatus status = NVAPI.NvAPI_EnumTCCPhysicalGPUs(tccHandles, out tccCount);
+        if (status != NvStatus.OK)
+        {
+          report.AppendLine(" Status: " + status);
+          report.AppendLine();
+        }
+        else
+        {
+          enumTCCPhysicalGPUsFault = false;
+        }
+      }
+
+      if (enumPhysicalGPUsFault && enumTCCPhysicalGPUsFault)
+      {
+        return;
       }
 
       var result = NVML.NvmlInit();
@@ -85,12 +122,20 @@ namespace OpenHardwareMonitor.Hardware.Nvidia {
       }
 
       report.Append("Number of GPUs: ");
-      report.AppendLine(count.ToString(CultureInfo.InvariantCulture));
+      int totalCount = count + tccCount;
+      report.AppendLine(totalCount.ToString(CultureInfo.InvariantCulture));
 
       for (int i = 0; i < count; i++) {
         NvDisplayHandle displayHandle;
         displayHandles.TryGetValue(handles[i], out displayHandle);
         hardware.Add(new NvidiaGPU(i, handles[i], displayHandle, settings));
+      }
+
+      for (int i = 0; i < tccCount; i++)
+      {
+        NvDisplayHandle displayHandle;
+        displayHandles.TryGetValue(tccHandles[i], out displayHandle);
+        hardware.Add(new NvidiaGPU(i, tccHandles[i], displayHandle, settings));
       }
 
       report.AppendLine();
