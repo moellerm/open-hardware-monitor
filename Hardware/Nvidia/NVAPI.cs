@@ -315,6 +315,10 @@ namespace OpenHardwareMonitor.Hardware.Nvidia {
       [Out] NvPhysicalGpuHandle[] gpuHandles, out int gpuCount);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate NvStatus NvAPI_EnumTCCPhysicalGPUsDelegate(
+      [Out] NvPhysicalGpuHandle[] gpuHandles, out int gpuCount);
+
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate NvStatus NvAPI_GPU_GetTachReadingDelegate(
       NvPhysicalGpuHandle gpuHandle, out int value);
 
@@ -384,6 +388,8 @@ namespace OpenHardwareMonitor.Hardware.Nvidia {
       NvAPI_GetPhysicalGPUsFromDisplay;
     public static readonly NvAPI_EnumPhysicalGPUsDelegate
       NvAPI_EnumPhysicalGPUs;
+    public static readonly NvAPI_EnumTCCPhysicalGPUsDelegate
+      NvAPI_EnumTCCPhysicalGPUs;
     public static readonly NvAPI_GPU_GetTachReadingDelegate
       NvAPI_GPU_GetTachReading;
     public static readonly NvAPI_GPU_GetAllClocksDelegate
@@ -471,6 +477,7 @@ namespace OpenHardwareMonitor.Hardware.Nvidia {
         GetDelegate(0x9ABDD40D, out NvAPI_EnumNvidiaDisplayHandle);
         GetDelegate(0x34EF9506, out NvAPI_GetPhysicalGPUsFromDisplay);
         GetDelegate(0xE5AC921F, out NvAPI_EnumPhysicalGPUs);
+        GetDelegate(0xD9930B07, out NvAPI_EnumTCCPhysicalGPUs);
         GetDelegate(0x5F608315, out NvAPI_GPU_GetTachReading);
         GetDelegate(0x1BD69F49, out NvAPI_GPU_GetAllClocks);
         GetDelegate(0x60DED2ED, out NvAPI_GPU_GetDynamicPstatesInfoEx);
