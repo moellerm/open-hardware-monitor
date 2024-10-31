@@ -37,28 +37,37 @@ namespace OpenHardwareMonitor.Utilities
         private async void HandleRequestAsync()
         {
             m_serverPipe = InterprocessCommunicationFactory.GetServerPipe();
-            while (m_cancellationToken.IsCancellationRequested == false)
+            try
             {
-                await m_serverPipe.WaitForConnectionAsync(m_cancellationToken.Token);
-                while (m_serverPipe.IsConnected)
+                while (m_cancellationToken.IsCancellationRequested == false)
                 {
-                    using (var stream = new MemoryStream())
+                    await m_serverPipe.WaitForConnectionAsync(m_cancellationToken.Token);
+                    while (m_serverPipe.IsConnected)
                     {
-                        byte[] buffer = new byte[32];
-                        int bytesRead;
-                        while ((bytesRead = m_serverPipe.Read(buffer, 0, buffer.Length)) > 0)
+                        using (var stream = new MemoryStream())
                         {
-                            stream.Write(buffer, 0, bytesRead);
-                        }
-                        byte[] result = stream.ToArray();
-                        if(result.Length == 1)
-                        {
-                            SecondInstanceRequest request = (SecondInstanceRequest)result[0];
-                            new Task(() => OnSecondInstanceRequest?.Invoke(request)).Start();
+                            byte[] buffer = new byte[32];
+                            int bytesRead;
+                            while ((bytesRead = m_serverPipe.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                stream.Write(buffer, 0, bytesRead);
+                            }
+
+                            byte[] result = stream.ToArray();
+                            if (result.Length == 1)
+                            {
+                                SecondInstanceRequest request = (SecondInstanceRequest)result[0];
+                                new Task(() => OnSecondInstanceRequest?.Invoke(request)).Start();
+                            }
                         }
                     }
+
+                    m_serverPipe.Disconnect();
                 }
-                m_serverPipe.Disconnect();
+            }
+            catch (OperationCanceledException)
+            {
+                // Nothing to do.
             }
         }
 

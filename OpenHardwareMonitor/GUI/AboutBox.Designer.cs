@@ -26,141 +26,141 @@ namespace OpenHardwareMonitor.GUI {
       base.Dispose(disposing);
     }
 
-    #region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
-      this.okButton = new System.Windows.Forms.Button();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
-      this.label1 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
-      this.projectLinkLabel = new System.Windows.Forms.LinkLabel();
-      this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-      this.licenseLinkLabel = new System.Windows.Forms.LinkLabel();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-      this.SuspendLayout();
-      // 
-      // okButton
-      // 
-      this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.okButton.Location = new System.Drawing.Point(269, 79);
-      this.okButton.Name = "okButton";
-      this.okButton.Size = new System.Drawing.Size(75, 23);
-      this.okButton.TabIndex = 0;
-      this.okButton.Text = "OK";
-      this.okButton.UseVisualStyleBackColor = true;
-      // 
-      // pictureBox1
-      // 
-      this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-      this.pictureBox1.Location = new System.Drawing.Point(10, 11);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(48, 48);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox1.TabIndex = 1;
-      this.pictureBox1.TabStop = false;
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(74, 12);
-      this.label1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(120, 13);
-      this.label1.TabIndex = 2;
-      this.label1.Text = "Open Hardware Monitor";
-      // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(74, 46);
-      this.label2.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(273, 13);
-      this.label2.TabIndex = 3;
-      this.label2.Text = "Copyright © 2009-2023 Michael Möller and contributors. ";
-      // 
-      // label3
-      // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(74, 29);
-      this.label3.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(127, 13);
-      this.label3.TabIndex = 4;
-      this.label3.Text = "(unknown)";
-      // 
-      // projectLinkLabel
-      // 
-      this.projectLinkLabel.AutoSize = true;
-      this.projectLinkLabel.Location = new System.Drawing.Point(164, 80);
-      this.projectLinkLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-      this.projectLinkLabel.Name = "projectLinkLabel";
-      this.projectLinkLabel.Size = new System.Drawing.Size(82, 13);
-      this.projectLinkLabel.TabIndex = 6;
-      this.projectLinkLabel.TabStop = true;
-      this.projectLinkLabel.Text = "Project Website";
-      this.projectLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
-      // 
-      // flowLayoutPanel1
-      // 
-      this.flowLayoutPanel1.AutoSize = true;
-      this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-      this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 100);
-      this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-      this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-      this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
-      this.flowLayoutPanel1.TabIndex = 8;
-      // 
-      // licenseLinkLabel
-      // 
-      this.licenseLinkLabel.AutoSize = true;
-      this.licenseLinkLabel.Location = new System.Drawing.Point(25, 80);
-      this.licenseLinkLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-      this.licenseLinkLabel.Name = "licenseLinkLabel";
-      this.licenseLinkLabel.Size = new System.Drawing.Size(107, 13);
-      this.licenseLinkLabel.TabIndex = 9;
-      this.licenseLinkLabel.TabStop = true;
-      this.licenseLinkLabel.Text = "Licensing Information";
-      this.licenseLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
-      // 
-      // AboutBox
-      // 
-      this.AcceptButton = this.okButton;
-      this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-      this.AutoSize = true;
-      this.ClientSize = new System.Drawing.Size(359, 115);
-      this.Controls.Add(this.licenseLinkLabel);
-      this.Controls.Add(this.flowLayoutPanel1);
-      this.Controls.Add(this.projectLinkLabel);
-      this.Controls.Add(this.label3);
-      this.Controls.Add(this.label2);
-      this.Controls.Add(this.label1);
-      this.Controls.Add(this.pictureBox1);
-      this.Controls.Add(this.okButton);
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-      this.MaximizeBox = false;
-      this.MinimizeBox = false;
-      this.Name = "AboutBox";
-      this.ShowInTaskbar = false;
-      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-      this.Text = "About";
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-      this.ResumeLayout(false);
-      this.PerformLayout();
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
+            okButton = new System.Windows.Forms.Button();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            projectLinkLabel = new System.Windows.Forms.LinkLabel();
+            flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            licenseLinkLabel = new System.Windows.Forms.LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
+            // 
+            // okButton
+            // 
+            okButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            okButton.Location = new System.Drawing.Point(327, 79);
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.TabIndex = 0;
+            okButton.Text = "OK";
+            okButton.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(10, 11);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(48, 48);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(74, 12);
+            label1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(136, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Open Hardware Monitor";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(74, 46);
+            label2.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(309, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Copyright © 2009-2023 Michael Möller and contributors. ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(74, 29);
+            label3.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(65, 15);
+            label3.TabIndex = 4;
+            label3.Text = "(unknown)";
+            // 
+            // projectLinkLabel
+            // 
+            projectLinkLabel.AutoSize = true;
+            projectLinkLabel.Location = new System.Drawing.Point(164, 80);
+            projectLinkLabel.Margin = new System.Windows.Forms.Padding(0);
+            projectLinkLabel.Name = "projectLinkLabel";
+            projectLinkLabel.Size = new System.Drawing.Size(89, 15);
+            projectLinkLabel.TabIndex = 6;
+            projectLinkLabel.TabStop = true;
+            projectLinkLabel.Text = "Project Website";
+            projectLinkLabel.LinkClicked += linkLabel_LinkClicked;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel1.Location = new System.Drawing.Point(10, 100);
+            flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
+            flowLayoutPanel1.TabIndex = 8;
+            // 
+            // licenseLinkLabel
+            // 
+            licenseLinkLabel.AutoSize = true;
+            licenseLinkLabel.Location = new System.Drawing.Point(25, 80);
+            licenseLinkLabel.Margin = new System.Windows.Forms.Padding(0);
+            licenseLinkLabel.Name = "licenseLinkLabel";
+            licenseLinkLabel.Size = new System.Drawing.Size(123, 15);
+            licenseLinkLabel.TabIndex = 9;
+            licenseLinkLabel.TabStop = true;
+            licenseLinkLabel.Text = "Licensing Information";
+            licenseLinkLabel.LinkClicked += linkLabel_LinkClicked;
+            // 
+            // AboutBox
+            // 
+            AcceptButton = okButton;
+            AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            AutoSize = true;
+            ClientSize = new System.Drawing.Size(417, 115);
+            Controls.Add(licenseLinkLabel);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(projectLinkLabel);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(pictureBox1);
+            Controls.Add(okButton);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "AboutBox";
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "About";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
-    }
+        #endregion
 
-    #endregion
-
-    private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button okButton;
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label label2;

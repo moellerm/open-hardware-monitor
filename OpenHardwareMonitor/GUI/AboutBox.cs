@@ -17,31 +17,38 @@ using System.Windows.Forms;
 using Microsoft.Extensions.Logging;
 using OpenHardwareMonitorLib;
 
-namespace OpenHardwareMonitor.GUI {
-  public partial class AboutBox : Form {
-    public AboutBox() {
-      InitializeComponent();
-      this.Font = SystemFonts.MessageBoxFont;
-      this.label3.Text = "Version " + 
-        System.Windows.Forms.Application.ProductVersion;
+namespace OpenHardwareMonitor.GUI
+{
+    public partial class AboutBox : Form
+    {
+        public AboutBox()
+        {
+            InitializeComponent();
+            Font = SystemFonts.MessageBoxFont;
+            label3.Text = "Version " +
+                          System.Windows.Forms.Application.ProductVersion;
 
-      projectLinkLabel.Links.Remove(projectLinkLabel.Links[0]);
-      projectLinkLabel.Links.Add(0, projectLinkLabel.Text.Length,
-        "http://openhardwaremonitor.org");
+            projectLinkLabel.Links.Remove(projectLinkLabel.Links[0]);
+            projectLinkLabel.Links.Add(0, projectLinkLabel.Text.Length,
+                "https://github.com/hexagon-oss/openhardwaremonitor");
 
-      licenseLinkLabel.Links.Remove(licenseLinkLabel.Links[0]);
-      licenseLinkLabel.Links.Add(0, licenseLinkLabel.Text.Length,
-        "License.html");
+            licenseLinkLabel.Links.Remove(licenseLinkLabel.Links[0]);
+            licenseLinkLabel.Links.Add(0, licenseLinkLabel.Text.Length,
+                "https://github.com/hexagon-oss/openhardwaremonitor/blob/master/LICENSE.txt");
+        }
+
+        private void linkLabel_LinkClicked(object sender,
+            LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(e.Link.LinkData.ToString()) { UseShellExecute = true });
+            }
+            catch (Exception x)
+            {
+                this.GetCurrentClassLogger().LogError(x, "Unable to launch browser");
+            }
+        }
+
     }
-
-    private void linkLabel_LinkClicked(object sender, 
-      LinkLabelLinkClickedEventArgs e) {
-      try {
-        Process.Start(new ProcessStartInfo(e.Link.LinkData.ToString()) { UseShellExecute = true });
-      } catch (Exception x) {
-        this.GetCurrentClassLogger().LogError(x, "Unable to launch browser");
-      }
-    }
-
-  }
 }
