@@ -39,6 +39,7 @@ namespace OpenHardwareMonitor.Hardware.CPU {
       RocketLake,
       AlderLake,
       RaptorLake,
+      MeteorLake
     }
 
     private readonly Sensor[] coreTemperatures;
@@ -240,6 +241,10 @@ namespace OpenHardwareMonitor.Hardware.CPU {
               case 0xB7: // Raptor lake family
               case 0xBA:
                   microarchitecture = Microarchitecture.RaptorLake;
+                  tjMax = GetTjMaxFromMSR();
+                  break;
+              case 0xAA: // Meteor lake family
+                  microarchitecture = Microarchitecture.MeteorLake;
                   tjMax = GetTjMaxFromMSR();
                   break;
               default:
