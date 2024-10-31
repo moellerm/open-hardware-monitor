@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using NUnit.Framework;
 
+#pragma warning disable CA1416
+
 namespace Aga.Controls.UnitTests
 {
 	[TestFixture]

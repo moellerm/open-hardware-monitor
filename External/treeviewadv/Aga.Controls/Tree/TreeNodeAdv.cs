@@ -6,8 +6,7 @@ using System.Security.Permissions;
 
 namespace Aga.Controls.Tree
 {
-	[Serializable]
-	public sealed class TreeNodeAdv : ISerializable
+	public sealed class TreeNodeAdv
 	{
 		#region NodeCollection
 		private class NodeCollection : Collection<TreeNodeAdv>
@@ -425,37 +424,5 @@ namespace Aga.Controls.Tree
 			else
 				Tree.SetIsExpanded(this, value, ignoreChildren);
 		}
-
-		#region ISerializable Members
-
-		private TreeNodeAdv(SerializationInfo info, StreamingContext context)
-			: this(null, null)
-		{
-			int nodesCount = 0;
-			nodesCount = info.GetInt32("NodesCount");
-			_isExpanded = info.GetBoolean("IsExpanded");
-			_tag = info.GetValue("Tag", typeof(object));
-
-			for (int i = 0; i < nodesCount; i++)
-			{
-				TreeNodeAdv child = (TreeNodeAdv)info.GetValue("Child" + i, typeof(TreeNodeAdv));
-				Nodes.Add(child);
-			}
-
-		}
-
-		public void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			info.AddValue("IsExpanded", IsExpanded);
-			info.AddValue("NodesCount", Nodes.Count);
-			if ((Tag != null) && Tag.GetType().IsSerializable)
-				info.AddValue("Tag", Tag, Tag.GetType());
-
-			for (int i = 0; i < Nodes.Count; i++)
-				info.AddValue("Child" + i, Nodes[i], typeof(TreeNodeAdv));
-
-		}
-
-		#endregion
 	}
 }
