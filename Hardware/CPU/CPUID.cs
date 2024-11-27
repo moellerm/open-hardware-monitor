@@ -221,7 +221,7 @@ namespace OpenHardwareMonitor.Hardware.CPU {
           coreMaskWith = NextLog2(maxCoreIdPerPackage);
           break;
         case Vendor.AMD:
-          if (this.family == 0x17 || this.family == 0x19) {
+          if (this.family == 0x17 || this.family == 0x19 || this.family == 0x1A) {
             coreMaskWith = (cpuidExtData[8, 2] >> 12) & 0xF;
             threadMaskWith =
               NextLog2(((cpuidExtData[0x1E, 1] >> 8) & 0xFF) + 1);
