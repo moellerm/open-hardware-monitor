@@ -39,7 +39,10 @@ namespace OpenHardwareMonitor.Hardware.CPU {
       JasperLake,
       RocketLake,
       AlderLake,
-      RaptorLake
+      RaptorLake,
+      MeteorLake,
+      ArrowLake,
+      PantherLake
     }
 
     private readonly Sensor[] coreTemperatures;
@@ -245,6 +248,22 @@ namespace OpenHardwareMonitor.Hardware.CPU {
                 microarchitecture = Microarchitecture.RaptorLake;
                 tjMax = GetTjMaxFromMSR();
                 break;
+              case 0xAC: //Meteor Lake
+              case 0xAA: //Meteor Lake L
+                microarchitecture = Microarchitecture.MeteorLake;
+                tjMax = GetTjMaxFromMSR();
+                break;
+              case 0xC6: //Intel Arrow Lake Desktop
+              case 0xC5: //Intel Arrow Lake H
+              case 0xB5: //Intel Arrow Lake U
+              case 0xBD: //Intel Lunar Lake M
+                microarchitecture = Microarchitecture.ArrowLake;
+                tjMax = GetTjMaxFromMSR();
+                break;
+              case 0xCC: //Intel Panther Lake
+                microarchitecture = Microarchitecture.PantherLake;
+                tjMax = GetTjMaxFromMSR();
+                break;
               default:
                 microarchitecture = Microarchitecture.Unknown;
                 tjMax = Floats(100);
@@ -304,7 +323,10 @@ namespace OpenHardwareMonitor.Hardware.CPU {
         case Microarchitecture.JasperLake:
         case Microarchitecture.RocketLake:
         case Microarchitecture.AlderLake:
-        case Microarchitecture.RaptorLake: {
+        case Microarchitecture.RaptorLake:
+        case Microarchitecture.MeteorLake:
+        case Microarchitecture.PantherLake:
+        case Microarchitecture.ArrowLake:  {
             uint eax, edx;
             if (Ring0.Rdmsr(MSR_PLATFORM_INFO, out eax, out edx)) {
               timeStampCounterMultiplier = (eax >> 8) & 0xff;
@@ -379,7 +401,10 @@ namespace OpenHardwareMonitor.Hardware.CPU {
           microarchitecture == Microarchitecture.JasperLake ||
           microarchitecture == Microarchitecture.RocketLake ||
           microarchitecture == Microarchitecture.AlderLake ||
-          microarchitecture == Microarchitecture.RaptorLake
+          microarchitecture == Microarchitecture.RaptorLake ||
+          microarchitecture == Microarchitecture.MeteorLake ||
+          microarchitecture == Microarchitecture.ArrowLake ||
+          microarchitecture == Microarchitecture.PantherLake
           ) {
         powerSensors = new Sensor[energyStatusMSRs.Length];
         lastEnergyTime = new DateTime[energyStatusMSRs.Length];
@@ -508,8 +533,11 @@ namespace OpenHardwareMonitor.Hardware.CPU {
               case Microarchitecture.JasperLake:
               case Microarchitecture.RocketLake:
               case Microarchitecture.AlderLake:
-              case Microarchitecture.RaptorLake: {
-                  uint multiplier = (eax >> 8) & 0xff;
+              case Microarchitecture.RaptorLake:
+              case Microarchitecture.MeteorLake:
+              case Microarchitecture.ArrowLake:
+              case Microarchitecture.PantherLake: {
+                      uint multiplier = (eax >> 8) & 0xff;
                   coreClocks[i].Value = (float)(multiplier * newBusClock);
                 } break;
               default: {
